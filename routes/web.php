@@ -6,9 +6,13 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CustomerController;
 
 // リソースコントローラで基本的なCRUDのメソッドのルーティングをまとめて用意する.
 Route::resource('items', ItemController::class)->middleware(['auth', 'verified']);
+
+// リソースコントローラで基本的なCRUDのメソッドのルーティングをまとめて用意する.
+Route::resource('customers', CustomerController::class)->middleware(['auth', 'verified']);
 
 Route::get('/inertia-test', function () {
     return Inertia::render('InertiaTest');
