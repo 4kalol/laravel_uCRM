@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DbTestController;
 use App\Http\Controllers\PurchaseController;
 
 // リソースコントローラで基本的なCRUDのメソッドのルーティングをまとめて用意する.
@@ -17,6 +18,10 @@ Route::resource('customers', CustomerController::class)->middleware(['auth', 've
 
 // リソースコントローラで基本的なCRUDのメソッドのルーティングをまとめて用意する.
 Route::resource('purchases', PurchaseController::class)->middleware(['auth', 'verified']);
+
+// DB練習用
+Route::get('/db_test', [DbTestController::class, 'index'])->name('dbtest.index');
+Route::get('/db_test/{room_id}', [DbTestController::class, 'show'])->name('dbtest.show');
 
 Route::get('/inertia-test', function () {
     return Inertia::render('InertiaTest');
