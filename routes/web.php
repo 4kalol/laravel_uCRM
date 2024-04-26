@@ -10,6 +10,14 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DbTestController;
 use App\Http\Controllers\PurchaseController;
 
+use App\Http\Controllers\GoogleLoginController;
+
+Route::get('/auth/google', [GoogleLoginController::class, 'redirectToGoogle'])
+    ->name('login.google');
+
+Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback'])
+    ->name('login.google.callback');
+
 // リソースコントローラで基本的なCRUDのメソッドのルーティングをまとめて用意する.
 Route::resource('items', ItemController::class)->middleware(['auth', 'verified']);
 
